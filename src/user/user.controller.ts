@@ -7,10 +7,15 @@ import { JwtGuard } from 'src/auth/guard';
 @Controller('users')
 export class UserController {
   @Get('me')
+
+  // Функция getMe
+  // Принимает в себя декоратор GetUser
+  // user соответсвует User
   getMe(@GetUser() user: User) {
     return user;
   }
 
+  // Обновление данных пользователя
   @Patch()
   editUser() {}
 }

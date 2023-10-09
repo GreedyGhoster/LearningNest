@@ -8,6 +8,7 @@ import { JwtStrategy } from './strategy';
   // Импортируем модуль jwt и регистрируем ничего
   imports: [JwtModule.register({})],
   controllers: [AuthController],
+  // JwtStrategy показывает стратегию jwt
   providers: [AuthService, JwtStrategy],
 })
 export class AuthModule {}
