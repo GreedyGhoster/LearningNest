@@ -1,17 +1,29 @@
-import { Controller, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { AuthReq } from './req';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
+  // Импортируем сервис авторизации и аутентификации
   constructor(private authService: AuthService) {}
 
-  @Get('signin')
-  signin() {
-    return this.authService.signin();
+  @HttpCode(HttpStatus.OK)
+  @Post('signin')
+  // На signin из body берутся значения, соответсвующие AuthReq
+  signin(@Body() req: AuthReq) {
+    return this.authService.signin(req);
   }
 
-  @Get('signup')
-  signup() {
-    return this.authService.signup();
+  @Post('signup')
+  signup(@Body() req: AuthReq) {
+    return this.authService.signup(req);
   }
 }
