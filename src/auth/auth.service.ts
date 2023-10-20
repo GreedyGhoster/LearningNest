@@ -19,7 +19,7 @@ export class AuthService {
     // Определяем данные для токениризации
     const payload = {
       sub: userId,
-      email,
+      email: email,
     };
 
     // Используем конфиг для получения jwt_secret из .env
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   async signup(req: AuthReq) {
-    // Пробуем выполнить этот кусок кода
+    // Пробуем выполнить этот кусок кода на  регистрацию
     try {
       // Хэшируем пароль с помощью argon
       const hash = await argon.hash(req.password);
@@ -49,7 +49,7 @@ export class AuthService {
       const user = await this.prisma.user.create({
         data: {
           email: req.email,
-          hash,
+          hash: hash,
         },
       });
 

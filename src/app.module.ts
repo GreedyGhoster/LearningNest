@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     // Глобальный модуль конфигурации
-    // Нужно для безопасного использования .env
+    // Нужно для нормального использования .env
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     UserModule,

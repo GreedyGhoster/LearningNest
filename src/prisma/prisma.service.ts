@@ -16,6 +16,7 @@ export class PrismaService extends PrismaClient {
       },
     });
   }
+  // Очистка базы данных от некоторых таблиц
   cleanDb() {
     return this.$transaction([
       this.bookmark.deleteMany(),

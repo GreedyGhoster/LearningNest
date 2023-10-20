@@ -2,7 +2,6 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateBookmarkReq } from './req/create-bookmark.req';
 import { EditBookmarkReq } from './req/edit-bookmark.req';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class BookmarkService {
@@ -11,7 +10,7 @@ export class BookmarkService {
   async createBookmark(userId: number, req: CreateBookmarkReq) {
     const bookmark = this.prisma.bookmark.create({
       data: {
-        userId,
+        userId: userId,
         ...req,
       },
     });
@@ -22,7 +21,7 @@ export class BookmarkService {
   async getBookmarks(userId: number) {
     return this.prisma.bookmark.findMany({
       where: {
-        userId,
+        userId: userId,
       },
     });
   }
@@ -31,7 +30,7 @@ export class BookmarkService {
     return this.prisma.bookmark.findFirst({
       where: {
         id: bookmarkId,
-        userId,
+        userId: userId,
       },
     });
   }
