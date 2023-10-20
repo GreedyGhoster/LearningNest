@@ -7,7 +7,6 @@ import {
   Post,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthReq } from './req';
 
 @Controller()
